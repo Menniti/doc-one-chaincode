@@ -1,0 +1,26 @@
+/**
+ * Sample business network definition.
+ */
+namespace org.acme
+
+asset Document identified by documentId {
+  o String documentId
+  o String cpf
+  o String email
+  o String title
+  o String description
+  o String owner
+  o String[] AssignedBy
+}
+
+participant User identified by userId {
+  o String name
+  o String lastname
+  o String cpf
+  o String userId
+}
+
+transaction UpdateDocumentOwner {
+  o String newAssignedValue
+  --> Document documentAsset
+}
