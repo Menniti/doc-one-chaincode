@@ -6,11 +6,21 @@
 /**
  * Access control rules for tutorial-network
  */
-rule Default {
-    description: "Allow all participants access to all resources"
-    participant: "ANY"
-    operation: ALL
+
+
+rule EverybodyCanReadEverything {
+    description: "Allow all participants read access to all resources"
+    participant: "org.acme.User"
+    operation: READ
     resource: "org.acme.*"
+    action: ALLOW
+}
+
+rule EverybodyCanSubmitTransactions {
+    description: "Allow all participants to submit transactions"
+    participant: "org.acme.User"
+    operation: CREATE
+    resource: "org.acme.User"
     action: ALLOW
 }
 
