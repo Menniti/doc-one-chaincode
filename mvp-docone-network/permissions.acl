@@ -21,3 +21,20 @@ rule SystemACL {
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
+
+rule NetworkAdminUser {
+  description: "Fornece aos administradores da rede, acesso total aos recursos do usuario"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "**"
+  action: ALLOW
+}
+
+rule NetworkAdminSystem {
+  description: "Fornece aos administradores da rede, acesso total aos recursos do sistema"
+  participant:
+  "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
