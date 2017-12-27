@@ -49,6 +49,8 @@ Na pasta fabric-tools
 
 ```
 ./downloadFabric.sh
+./stopFabric.sh
+./teardownFabric.sh
 ./startFabric.sh
 ./createPeerAdminCard.sh
 
@@ -79,7 +81,7 @@ composer archive create --sourceType dir --sourceName . --archiveFile ./dist/doc
 ## Deploy a network no peer
 
 ```
-composer network deploy --card PeerAdmin@hlfv1 --networkAdmin adminName --networkAdminEnrollSecret adminPassword --archiveFile ./dist/docone-network.bna  --file docone-network-admin-card.card
+composer network deploy --card PeerAdmin@hlfv1 --networkAdmin adminname --networkAdminEnrollSecret adminPassword --archiveFile ./dist/docone-network.bna  --file docone-network-admin-card.card
 
 ```
 
@@ -99,7 +101,7 @@ composer card list
 
 ```
 
-composer network ping -c adminName@docone-network
+composer network ping -c adminname@mvp-docone-network
     
 
    The connection to the network was successfully tested: perishable-network
