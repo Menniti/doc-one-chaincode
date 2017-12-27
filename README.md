@@ -25,7 +25,17 @@ docker rmi $(docker images dev-* -q)
 ```
 rm -rf ~/.composer-connection-profiles
 rm -rf ~/.composer-credentials
+rm -fr ~/.composer
+rm -rf ~/.composer-connection-profiles/hlfv1
+rm -f ~/.composer-credentials/*
 ```
+
+## set variables de ambiente para Fabric v1.0
+```
+export FABRIC_VERSION=hlfv1
+export FABRIC_START_TIMEOUT=30
+```
+
 
 ## Dando Start ao Hyperledger Fabric (Esse e o que a business network connecta e uma serie de docker containers)
 
@@ -66,24 +76,17 @@ mkdir dist
 composer archive create --sourceType dir --sourceName . --archiveFile ./dist/docone-network.bna 
 ```
 
-## Instalando nosso arquivo .bna em nossos peers.
+## Deploy a network no peer
 
 ```
-cd /dist
-composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName docone-network
-```
-
-## Instanciando nossa network
-
-```
-composer network start --card PeerAdmin@hlfv1 --networkAdmin adminName --networkAdminEnrollSecret adminPassword --archiveFile  nameofNetworkFile.bna --file networkadmin.card
+composer network deploy --card PeerAdmin@hlfv1 --networkAdmin adminName --networkAdminEnrollSecret adminPassword --archiveFile ./dist/docone-network.bna  --file docone-network-admin-card.card
 
 ```
 
 ## Importando o networkadmin.card para nossa lista de cards
 
 ```
-composer card import --file networkadmin.card 
+composer card import --file docone-network-admin-card.card
 ```
 
 ## Verifique se o card foi importado corretamente.
